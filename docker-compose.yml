@@ -47,14 +47,15 @@ services:
     restart: always
 
   postservicecommand:
-    image: namdam1123/postservicecommand # Image mới cho API postservicecommand
+    image: namdam1123/postservicecommand
     build:
-      context: ./postservicecommand # Đảm bảo đường dẫn đúng nếu bạn dùng Dockerfile riêng
+      context: ./postservicecommand
       dockerfile: Dockerfile
     depends_on:
       - mysql-docker-container
     ports:
-      - 8080:8080 # Port khác với postservicequerry
+      - 8080:8080
+      - 5005:5005 # Expose debug port
     volumes:
       - "D:/Desktop/J2EE/J2EEDemo/postservicecommand:/app"
     container_name: postservicecommand
