@@ -31,7 +31,7 @@ services:
 
   # Service cho postservicecommand
   postservicecommand:
-    image: namdam1123/postservicecommand
+    image: postservicecommand
     build:
       context: ./postservicecommand
       dockerfile: Dockerfile
@@ -49,7 +49,7 @@ services:
 
   # Các service khác
   postservicequerry1:
-    image: query-service
+    image: postservicequery
     build:
       context: ./
       dockerfile: Dockerfile
@@ -57,6 +57,8 @@ services:
       - mysql-docker-container
     ports:
       - 8081:8082
+      - 6006:6006 # Expose debug port
+
     volumes:
       - /data/spring-boot-app:/app
     environment:
@@ -65,7 +67,7 @@ services:
     restart: always
 
   postservicequerry2:
-    image: namdam1123/postservicequerry
+    image: postservicequery
     build:
       context: ./
       dockerfile: Dockerfile
