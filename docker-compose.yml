@@ -94,6 +94,30 @@ services:
     container_name: nginx-loadbalancer
     restart: always
 
+  nginx2:
+    image: nginx:latest
+    ports:
+      - 8085:8080
+    volumes:
+      - ./nginx2.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - postservicequerry1
+      - postservicequerry2
+    container_name: nginx2-loadbalancer
+    restart: always
+
+  haproxy:
+    image: haproxy:latest
+    container_name: haproxy-loadbalancer
+    ports:
+      - "8084:8084"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - nginx
+      - nginx2
+    restart: always
+
   zookeeper:
     image: wurstmeister/zookeeper:latest
     ports:
