@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   # Cơ sở dữ liệu cho postservicequerry
   mysql-docker-container:
