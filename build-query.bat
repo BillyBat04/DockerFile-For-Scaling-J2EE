@@ -1,9 +1,10 @@
 @echo off
-cd D:\Desktop\J2EE\J2EEDemo\postservicequerry
+cd D:\J2EEDemo\postservicecommand
 call mvn clean package -DskipTests
 
 call docker build -t postservicequery .
 
-cd D:\Desktop\J2EE\yaml-files
+cd D:\J2EEDemo\YamlFile
 call docker-compose up -d
 
+pause
